@@ -1,0 +1,36 @@
+/* 
+* @Author: anchen
+* @Date:   2019-08-18 16:50:55
+* @Last Modified by:   anchen
+* @Last Modified time: 2019-08-19 22:54:50
+*/
+
+
+/*创建文章主表*/
+CREATE TABLE T_ARTICLE (
+	ID INT,
+	TITLE VARCHAR(60) /*文章标题*/,
+	AUTHOR VARCHAR(40),/*作者名称*/
+	READING_VOLUME INT,/*阅读量*/
+	CALSSIFY VARCHAR(40) /*文章类别*/,
+	PREVIEW_CONTENT VARCHAR(150) ,/*内容预览*/
+	CREATE_TIEM DATETIME,/*文章创建时间*/
+	RECOMMEND INT NOT NULL
+);
+
+/*创建文章副表*/
+CREATE TABLE T_ARTICLE_CONTENT(
+	MALE_ID INT, /*父亲ID*/
+	CONTENT VARCHAR(9000)/*文章内容*/
+);
+
+/*文章评论*/
+CREATE TABLE T_COMMENT(
+	COM_ID INT AUTO_INCREMENT PRIMARY KEY ,/*评论ID 设置主键自增*/
+	ARTICLE_ID INT,/*评论所属文章ID*/
+	COM_CONTENT VARCHAR(300),/*评论内容*/
+	COM_TIME DATETIME,/*评论时间*/
+	COMMENTATOR_NAME VARCHAR(40)/*评论者昵称*/
+);
+
+ALTER TABLE T_COMMENT AUTO_INCREMENT=1;

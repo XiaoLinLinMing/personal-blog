@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/article_list.css">
+	<link rel="stylesheet" href="../font/style.css">
+	<title>林会祺的个人博客</title>
+</head>
+<body style="padding: 0;margin: 0;">
+	<div class="main" id="main">
+		<div class="top-title">
+			@林会祺的个人博客
+		</div>
+		<div class="article-panel">
+			<div class="article-panel-block">
+				<div class="article-panel-block-item" >
+						<div 
+							class="recommended-reading-block" 
+							v-for="(item, index) in article_list" 
+							v-show="article_list.length!=0"
+						>
+							<div 
+								class="recommended-reading-img" 
+								@click="article_dump($event)"
+								:data-id="item.article_id"
+							>
+								<div>类别</div>
+								<img 
+									:src="item.cover" 
+									alt="网络开小差咯" 									 
+								>
+							</div>
+							<div class="recommended-reading-right">
+								<div 
+									class="recommended-reading-right-title" 
+									@click="article_dump($event)"
+									:data-id="item.article_id" 
+								>
+									{{item.title}}
+								</div>
+								<div class="recommended-reading-right-content">
+									
+									<span 
+										v-html='item.preview_content' 
+										@click="article_dump($event)" 
+										:data-id="item.article_id"
+									></span>
+								</div>
+
+								<div class="recommended-reading-right-data">						
+									<div><i class="icon-meter"></i> 2019年8月27日</div>
+									<div><i class="icon-eye"></i> {{item.read_num}}人围观</div>
+								</div>					
+							</div>
+							<div class="read-all">
+
+							</div>	
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="page-turning" v-show="article_list.length!=0">
+			<div class="page-turning-block">
+				<div class="page-turning-block-turn" @click="page_turn(0)">上一页</div>
+				<input type="text" class="page-num" v-model="page_num">
+				<div class="page-num-text">共有 {{max_page_num}} 页</div>
+				<div class="page-turning-block-turn" @click="page_turn(1)">下一页</div>
+				<div class="page-turning-block-turn" @click="page_jump()">跳转</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/article_list.js"></script>
+</html>

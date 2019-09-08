@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ch" style="height: 100%;">
+<meta charset="UTF-8">
+<head>
+	
+	<link rel="stylesheet" href="css/release.css">
+	<title>文章发布</title>
+</head>
+<body style="padding: 0;margin: 0;height: 100%;">
+	<div id="main">
+		<div class="align-center">
+			<div class="editor">
+				<div class="align-center">
+					<div class="editor-title">
+						<input 
+							type="" 
+							name="" 
+							class="editor-title-input"
+							placeholder="请输入标题" 
+							v-model = "title"
+						> 
+					</div>
+				</div>
+				
+				<div class="align-center">					
+					<div class="editor-text">
+						<div class="align-center">
+							<div 
+								contentEditable="true" 
+								v-model='content' 
+								id='editor' 
+								class="input-text"
+							>
+							</div>
+						</div>
+					</div>					
+				</div>
+
+				<div class="setting">
+					<div class="select-name">类别</div>
+					<select name="" id="classify">
+						<option value="1">机器学习理论\框架</option>
+						<option value="2">前端\Vue.js\微信小程序</option>
+						<option value="3">后端\Mysql\PHP</option>
+						<option value="4">C\C++\python\java</option>
+						<option value="5">错误笔记</option>
+					</select>
+				</div>	
+					
+				<div class="setting">
+					<div class="select-name">作者</div>
+					<div contenteditable="true" class="author-input" id="author"></div>
+				</div>
+
+				<div class="setting">
+					<div class="select-name">推荐位</div>
+						<div 
+							class="author-input-checkbox" 
+							@click="show_recommend==true?show_recommend=false:show_recommend=true;"
+						>
+							<div v-if="show_recommend">●</div>
+						</div>
+				</div>
+			
+				<div class="align-center">
+					<div class="editor-submit">
+						<div class="submit-button" @click="dialog_show=true">提交</div>
+					</div>
+				</div>
+
+			</div>
+		
+			<div class="dialog-box" v-if="dialog_show">
+				<div class="dialog-box-tips">
+					<span>确定要提交吗？</span>
+				</div>
+				<div class="dialog-box-button-box">
+					<div class="dialog-box-button" @click="submit_content();dialog_show=false">
+						确定
+					</div>
+					<div class="dialog-box-button" @click="dialog_show=false">
+						取消
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/release.js"></script>
+</html>

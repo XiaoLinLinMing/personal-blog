@@ -1,0 +1,73 @@
+添加文章{
+	[add_article 添加文章]
+	 @param [string] $title    [文章标题]
+	 @param [string] $author   [作者名称]
+	 @param [number] $classify [类别序号]
+	 @param [json str] $content  [是否操作成功]
+}
+
+获取指定类型文章列表{
+	[get_article 获取指定类型文章列表]
+	@param  [number] $get_number   [获取的文章个数]
+	@param  [number] $get_classify [获取的文章类别]
+	@param  [起始位置] $start_index  [返回文章的起始位置]
+	@return [json str]  
+}
+
+获取文章的详细内容{
+	[get_article_content 获取文章的详细内容]
+	@param  [number] $article_id [文章id]
+	@return [json str]  [内容、阅读量、作者、创建时间]
+}
+
+添加阅读量{
+	[reading_article 添加阅读量]
+	@param  [number] $article_id [需要添加阅读量的文章id]
+	@return [type]    [description]
+}
+
+文章编辑修改{
+	[modify_article 文章编辑修改]
+	@param  [type] $article_id      [需要修改的文章id]
+	@param  [type] $article_content [修改过后的文章内容]
+	@return [json str]              [是否修改成功]
+}
+
+删除文章{
+	[del_article 删除文章]
+	@param  [type] $article_id [被删除的文章id]
+	@return [json str]         [是否删除成功]
+}
+
+获取最近更新的文章{
+	[get_recent_updates 获取最近更新的文章]
+	@param  [number] $get_number [获取的个数]
+	@return [json str]           [文章预览数据]
+}
+
+获取推荐阅读文章列表{
+	[get_recommend 获取推荐阅读文章列表]
+	@param  [number] $get_number [获取文章个数]
+	@return [json str]           [文章列表]
+}
+
+获取评论{
+	[get_comment 获取评论]
+	@param  [number] $article_id  [评论所属文章id]
+	@param  [number] $start_index [起始id]
+	@param  [number] $get_number  [获取评论个数]
+	@return [json str]            [评论列表]
+}
+
+删除评论{
+	[del_commend 删除评论]
+	@param  [number] $com_id [评论id]
+	@return [type]      [null]
+}
+
+添加评论{
+	[add_commend 添加评论]
+	@param [number] $article_id      [评论所属文章id]
+	@param [string] $commend_content [评论内容]
+	@param [string] $commend_author  [评论作者]
+}

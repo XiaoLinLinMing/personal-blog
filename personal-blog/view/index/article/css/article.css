@@ -1,0 +1,292 @@
+body{
+	font-size:62.5%;
+}
+
+.main{
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(228,240,248);
+	width: 100%;
+}
+
+.top-title{
+	width: 100%;
+	height: 3em;
+	display: flex;
+	justify-content: center;
+	background-color: rgb(80,178,126);
+	font-size: 3em;
+	line-height: 3em;
+	color: white;
+}
+
+.panel{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+/*文章显示面板*/
+.article-panel{
+	width: 800px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 50px;
+}
+
+.article-panel-top{
+	width: 94%;
+	height: 100px;
+	margin-left: 3%;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+}
+
+.article-panel-top-title{
+	width: 100%;
+	height: 40px;
+	margin-top: 5px;
+	font-size: 25px;
+	line-height: 40px;
+	font-weight: 600;
+	color: rgb(50,50,50);
+}
+
+.article-panel-top-data{
+	width: 100%;
+	height: 50px;
+	display: flex;
+}
+
+.article-panel-top-date{
+	line-height: 50px;
+	font-size: 15px;
+	color: rgb(118,118,118);
+	margin-right: 20px;
+}
+
+.article-panel-content{
+	width: 94%;
+	margin-left:3%;
+	margin-right: 3%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 16px;
+	color: rgb(74,74,74);
+	line-height: 25px;
+}
+
+.article-panel-content>img{
+	max-width:700px;
+	max-height:300px;
+}
+/*文章用户评论*/
+.article-comment{
+	width: 800px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.comment-input-panel{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.comment-input{
+	width: 80%;
+	height: 60px;
+	border:1px solid #ccc;
+	resize:none;
+	font-size: 15px;
+	padding:10px;
+}
+
+
+.comment-submit{
+	width: 90%;
+	margin-right: 5%;
+	margin-top: 20px;
+	height: 30px;
+	font-size: 15px;
+}
+
+.comment-submit-item{
+	float: right;
+	height: 100%;
+	width: 80px;
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 10px;
+	background-color: rgb(201,13,21);
+	cursor: pointer;
+}
+
+.comment-submit-item:hover{
+	background-color: rgba(201,13,21,.6);
+}
+
+.comment-word-number{
+	float: right;
+	font-size: 12px;
+	color: #ccc;
+	line-height: 30px;
+	margin-right: 20px;
+}
+
+.user-comment{
+	width: 800px;
+	display: flex;	
+	flex-direction: column;
+}
+
+.user-comment-block{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	background-color: white;
+	border-bottom: 1px dotted #ccc;
+}
+
+.user-comment-text{
+	width: 100%;
+	height: 40px;
+	display: flex;
+}
+.user-comment-text-username{
+	height: 40px;
+	font-size: 13px;
+	line-height: 40px;
+	padding-left: 10px;
+	color: rgb(74,74,74);
+}
+
+/*广告组件*/
+.ad{
+
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	padding-top:0;
+}
+
+.ad-self{
+	width: 100%;
+	height: 300px;
+	background-color: white;
+}	
+
+.ad-self-title{
+	width: 90%;
+	height: 50px;
+	margin-left: 5%;
+	border-bottom: 1px solid #ccc;
+	color: rgb(2011,13,21);
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.ad-self-content{
+	width: 94%;
+	height: 230px;
+	margin-left: 3%;
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.ad-self-img{
+	width: 100%;
+	height: 180px;
+	display: flex;
+	justify-content: center;
+}
+
+.ad-self-text{
+	width: 90%;
+	margin-left: 5%;
+	font-size: 15px;
+	line-height: 25px;
+	padding-bottom: 10px;
+	cursor: pointer;
+}
+
+.ad-block{
+	width: 300px;
+	height: 100px;
+	margin-top: 20px;
+}
+
+.fun-list{
+	width: 80px;
+	display: flex;
+	flex-direction: column;
+}
+
+.fun-list span{
+	color: rgb(80,80,80);
+}
+
+.fun-list-item{
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border:1px solid rgb(180,180,180);
+	text-align: center;
+	background-color: white;
+	cursor: pointer;
+}
+
+.fun-list-item:hover{
+	background-color: rgb(230,230,230);
+}
+
+/*联系方式*/
+.contact{
+
+	/*padding + width = 300px*/
+	width: 280px;
+	display: flex;
+	flex-direction: column;
+	padding:10px;
+	background-color: white;
+	margin-top: 20px;
+}
+
+.contact_2dcode{
+	width: 100%;
+	height: 140px;
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid #ccc;
+}
+
+.contact_2dcode-item{
+	width: 100px;
+	height: 100px;
+	position: relative;
+	border: 1px solid #ccc;
+}
+
+.code-name{
+	position: absolute;
+	bottom: -40px;
+	line-height: 50px;
+	font-size: 15px;
+	width: 100px;
+	text-align:center;
+	color:  rgb(80,80,80);
+}

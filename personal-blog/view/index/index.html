@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Python,c/c++,java,php,tensorflow,深度学习,个人博客">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="font/style.css">
+	<title>杰瑞的幻想空间</title>
+</head>
+<body style="padding: 0;margin: 0;">
+	<!--主容器-->
+	<div class="main" id="main">
+		<div class="top-main">
+			<div class="top-title">
+				<span class="top-title-name">杰瑞的幻想空间</span>
+				<div class="fun-item" :data-id="1" @click="jump_classify(1)">机器学习理论\框架</div>
+				<div class="fun-item" :data-id="2" @click="jump_classify(2)">前端\Vue.js\微信小程序</div>
+				<div class="fun-item" :data-id="3" @click="jump_classify(3)">后端\Mysql\PHP</div>
+				<div class="fun-item" :data-id="4" @click="jump_classify(4)">C\C++\python\java</div>
+				<div class="fun-item" :data-id="5" @click="jump_classify(5)">错误笔记</div>
+				<div class="fun-item" :data-id="6"><i class="icon-coin-yen"></i>  支持\联系</div>
+			</div>
+		</div>
+
+		<!--广告栏-->
+		<div class="ad">
+			<div class="ad-content" :style="ad_style">			
+				<div class="ad-select">
+					<div class="ad-left">
+
+					</div>
+				</div>
+				<div class="ad-select" style="float: right;">
+					<div class="ad-right">
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<!--近期更新模块-->
+		<div class="recent-updates-main" v-if="recent_updates.length!=0">
+			<div class="recent-updates-content">
+
+				<!--近期更新标题-->
+				<div class="updates-title" v-if="recent_updates.length!=0">
+					近期更新
+				</div>
+
+				<!--近期更新内容-->
+				<div class="updates-content">
+					<div 
+						class="updates-content-block" 
+						v-bind:class="{'updates-animation': scale_1}"
+						@mouseover="on_updates_animation(1)"
+						@mouseout="out_updates_animation(1)"
+						:data-id = "recent_updates[0].article_id"
+						:style="recent_updates[0].cover" 
+						@click="article_dump(recent_updates[0].article_id)"
+					>
+
+						<div class="updates-detail">
+							{{recent_updates[0].title}}
+						</div>
+					</div>
+					<div 
+						class="updates-content-block" 
+						v-bind:class="{'updates-animation': scale_2}"
+						@mouseover="on_updates_animation(2)"
+						@mouseout="out_updates_animation(2)"
+						:data-id = "recent_updates[1].article_id"
+						:style="recent_updates[1].cover" 
+						@click="article_dump(recent_updates[0].article_id)"
+					>
+						<div class="updates-detail">
+							{{recent_updates[1].title}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--标题-->
+		<div class="block-title" v-if="article_list.length!=0">
+			- 推荐阅读 -
+		</div>
+		<!--推荐阅读-->
+		<div class="recommended-reading-main1" v-if="article_list.length!=0">
+			<div class="recommended-reading-main2">
+
+				<!--一个文章预览容器-->
+				<div class="recommended-reading-block" v-for="(item, index) in article_list" >
+
+					<!--预览图-->
+					<div 
+						class="recommended-reading-img" 
+					>
+						<div>{{item.classify}}</div>
+						<img 
+							:src="item.cover" 
+							alt="网络开小差咯" 
+							@click="article_dump($event)"
+							:data-id = "item.article_id"
+						>
+					</div>
+					<!--右边-->
+					<div class="recommended-reading-right">
+
+						<!--文章内容预览-->
+						<div 
+							class="recommended-reading-right-title" 
+							@click="article_dump($event)"
+							:data-id = "item.article_id"
+						>
+							{{item.title}}
+						</div>
+						<div 
+							class="recommended-reading-right-content" 
+						>
+							
+							<span 
+								v-html='item.preview_content'
+								@click="article_dump($event)"
+								:data-id = "item.article_id"
+								
+							></span>
+						</div>
+						<div class="recommended-reading-right-data">						
+							<div><i class="icon-meter"></i> {{item.create_time}}</div>
+							<div><i class="icon-eye"></i> {{item.read_num}}人围观</div>
+							<div
+								@mouseover="admire_fun(1)"
+								@mouseout="admire_fun(0)"
+							><i class="icon-coin-yen"></i> 赞赏</div>
+						</div>					
+					</div>
+					<div class="read-all">
+
+					</div>	
+				</div>
+
+			</div>
+			<div class="admire-panel" v-bind:class="{'admire-panel-animation': admire}">
+				<div class="patronage">
+					<img src="img/wechat.png" alt="" class="patronage-2dcode">
+					<div class="patronage-name">
+						微信扫码赞助
+					</div>
+				</div>
+				<div class="patronage"  style="marginLeft:50px;">
+					<img src="img/alipay.jpg" alt="" class="patronage-2dcode">
+					<div class="patronage-name">
+						支付宝扫一扫赞助
+					</div>
+				</div>
+				<div class="patronage" style="backgroundColor: rgba(0,0,0,0);">
+					<img src="img/poor.jpg" alt="" class="patronage-2dcode">
+				</div>
+				<div class="detail">
+					<div class="detail-title">
+						为了更加优秀
+					</div>
+					<div class="detail-content">
+						正如这个教学网站, 如果没有大家的支持, 是做不起来的. 本身自己并没有任何做网页的背景, 都是一步步学习, 想尽力回报大家的支持, 体验更好的教学效果. 所以我有了大家的支持, 也就有了一鼓动力, 再也不能好好偷懒了, 我要学习更多, 用更好的效果来呈现给大家. 所以也希望大家可以继续助我一臂之力.
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--标题-->
+		<div class="block-title">
+			- 加入我的产品团队 -
+		</div>
+		<div class="product-show">
+			<div class="product-show-block">
+				<div class="product-show-title">
+					鹊 桥---介绍
+				</div>	
+				<div class="product-show-line">
+					<div class="product-show-line-name">平台名称：</div>
+					<div class="product-show-line-theme">鹊桥</div>
+				</div>
+				<div class="product-show-line">
+					<div class="product-show-line-name">平台概括：</div>
+					<div class="product-show-line-theme">一个让你施展才华的平台（可参考灵鸽APP）。这个平台能够连接需求方与服务方，平台会把需求方发布的需求精确匹配给可以解决这个需求的服务方。服务方可以是个人也可以是团体，只要你（你们）拥有一项有价值的技能就可以在鹊桥上面“接单”，例如你会：PS、绘图、前端开发、后端开发、硬件开发、代取快递、跑腿、写作等，假如需求方发布了这样一个需求：代取快递，那么鹊桥就会将拥有“代取快递”标签的服务方匹配个需求方。<br><br></div>
+				</div>
+				<div class="product-show-line">
+					<div class="product-show-line-name">应用举例1：</div>
+					<div class="product-show-line-theme">需求方：需要做一个官网展示页面。<br>服务方：1.一名学计算机的大学生<br>&emsp;&emsp;&emsp;&emsp;2.一个实力雄厚的开发公司<br>鹊桥：将服务方与需求方匹配到一起，它们之间再进行合作。<br><br></div>
+				</div>
+				<div class="product-show-line">
+					<div class="product-show-line-name">应用举例2：</div>
+					<div class="product-show-line-theme">需求方：帮我做一个小程序<br>
+						服务方：1.一名学计算机的大学生<br>&emsp;&emsp;&emsp;&emsp;2.个人开发者<br>&emsp;&emsp;&emsp;&emsp;3.软件工作室<br>鹊桥：将服务方与需求方匹配到一起，它们之间再进行合作。<br><br></div>
+				</div>
+				<div class="product-show-line">
+					<div class="product-show-line-name">应用举例3：</div>
+					<div class="product-show-line-theme">需求方：找一个网络写手<br>
+						服务方：1.一名大学生<br>&emsp;&emsp;&emsp;&emsp;2.个人作者<br>&emsp;&emsp;&emsp;&emsp;3.媒体工作室<br>鹊桥：将服务方与需求方匹配到一起，它们之间再进行合作。</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-show-cooperation">
+			<div class="product-show-cooperation-block">
+				<div class="product-show-cooperation-item">
+					<div class="product-show-title">
+						加 入 鹊 桥 团 队
+					</div>
+					<div class="product-show-cooperation-line">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="block-title">
+			- 关注我的动向 -
+		</div>
+		<div class="trends">
+			<div class="trends-item">
+			</div>
+		</div>-->
+	</div>
+	<footer>
+	  <small>Lin</small><br>
+	  <small>Email：<u><em>1004513485@qq.com</em></u></small><br>
+	  <small>© 2018 www.linhuiqi.top All Rights Reserved</small>
+	</footer>
+</body>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js?1325"></script>
+<script type="text/javascript" src="js/play.js"></script>
+</html>

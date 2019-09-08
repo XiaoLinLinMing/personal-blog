@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/article.css">
+	<link rel="stylesheet" href="../font/style.css">
+	<title>Document</title>
+</head>
+<body style="padding: 0;margin: 0;">
+	<div class="main" id="main">
+		<div class="top-title">
+				@林会祺的个人博客
+		</div>
+		<div class="panel">
+
+			<!--文章内容-->
+			<div class="article-panel">
+				<div class="article-panel-top">
+					<div class="article-panel-top-title">
+						{{title}}
+					</div>
+					<div class="article-panel-top-data">
+						<div class="article-panel-top-date">
+							{{create_time}}
+						</div>
+						<div class="article-panel-top-date" style="color:blue;">{{author}}</div>
+						<div class="article-panel-top-date">围观数： {{read_num}}</div>
+					</div>
+				</div>
+				<div class="article-panel-content">
+					<span v-html='content'></span>
+				</div>
+					<div class="article-comment">
+						<div class="comment-input-panel">
+							<textarea 
+								name="comment_content" 
+								id="comment_content" 
+								class="comment-input" 
+								placeholder="想说点什么吗？"
+							></textarea>
+						</div>
+						<div class="comment-submit">
+							<div class="comment-submit-item">
+								发表评论
+							</div>
+							<div class="comment-word-number">
+								还能输入1000个字符
+							</div>
+						</div>
+					</div>
+					<div class="user-comment">
+						<div class="user-comment-block" v-for="(item, index) in [1,2,3]">
+							<div class="user-comment-text">
+								<div class="user-comment-text-username">
+									1004513485 ：
+								</div>
+								<div class="user-comment-text-username" style="color: black;">
+									我也不知道哪里拿积分，回一个试试，听说有1分拿呢
+								</div>
+								<div class="user-comment-text-username">
+									（2019年8月28日00:34:16）
+								</div>
+							</div>
+						</div>
+
+					</div>
+			</div>
+			
+			<!--分享操作-->
+			<div class="fun-list">
+				<div class="fun-list-item" title="转发" style="backgroundColor:rgb(246,132,132); ">
+					<span class="icon-redo2"></span>
+				</div>
+				<div class="fun-list-item" title="打赏">
+					<span class="icon-coin-yen"></span>
+				</div>
+			</div>
+			<!--侧面广告-->
+			<div class="ad">
+				
+				<div class="ad-self">
+					<div class="ad-self-title">
+						<span class="icon-fire"></span> 热门内容
+					</div>
+					<div class="ad-self-content">
+
+							<div class="ad-self-img">
+								<img src="../img/test.jpg" alt="网络开小差咯" style="width: 90%;height: 90%;">
+							</div>
+							<div class="ad-self-text">
+								<a href="https:\\www.baidu.com">【正品包邮】零基础学Python3.5编程从入门到实践</a>
+								<span class="icon-fire" style="color: red;"></span>
+							</div>
+					</div>
+				</div>
+				
+				<div class="ad-block">
+					<img src="img/ad1.png" alt=""  style="width: 100%;height: 100%;">
+				</div>
+				<div class="ad-block">
+					<img src="img/ad2.png" alt=""  style="width: 100%;height: 100%;">
+				</div>
+				<div class="ad-block">
+					<img src="img/ad3.png" alt=""  style="width: 100%;height: 100%;">
+				</div>
+				<div class="contact">
+					<div class="contact_2dcode">
+						<div class="contact_2dcode-item" style="margin-right: 40px;">
+							<img src="../img/wechat.png" alt="网络开小差咯" style="width: 100%;height: 100%;border: 0;">
+							<div class="code-name">头条主页</div>
+						</div>
+						<div class="contact_2dcode-item">
+							<img src="../img/wechat.png" alt="网络开小差咯" style="width: 100%;height: 100%;border: 0;">
+							<div class="code-name">百家号主页</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/article.js?2"></script>
+</html>

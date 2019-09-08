@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ch" >
+<head>
+	<meta charset="UTF-8">
+	<title>博客后台</title>
+	<link rel="stylesheet" href="css/admire.css">
+</head>
+<body style="padding: 0;margin: 0;height: 100%;">
+	
+	<!--主容器-->
+	<div class="main" id="main">
+		<div class="top">
+			<div class="top-item">	
+				<div class="top-name"><span>博客后台</span></div>
+			</div>
+		</div>
+		<div class="com-panel">
+			<div class="com-item">
+				<div class="left-fun">
+					<div class="fun-block" @click="jump_fun(1)">
+						<span>■ 发布文章</span>
+					</div>
+					<div class="fun-block" @click="jump_fun(2)">
+						<span>■ 文章管理</span>
+					</div>
+					<div class="fun-block" @click="jump_fun(3)">
+						<span>■ 主页广告管理</span>
+					</div>
+					<div class="fun-block" @click="jump_fun(4)">
+						<span>■ 访客数据</span>
+					</div>
+				</div>
+
+				<div class="right">
+					<div class="fun-title"><span id="title">发布文章</span></div>
+					<div class="fun-view">
+						<iframe 
+							src="release/release.html" 
+							frameborder="0" 
+							id='show'  
+							scrolling="yes"
+							>							
+						</iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/admire.js"></script>
+</html>

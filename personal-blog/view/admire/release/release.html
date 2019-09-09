@@ -61,7 +61,14 @@
 							<div v-if="show_recommend">●</div>
 						</div>
 				</div>
-			
+
+				<div class="setting">
+					<div class="select-name">文章封面</div>
+					<div class="input-file">
+							<input type="file" name="" id="cover">
+					</div>
+				</div>
+
 				<div class="align-center">
 					<div class="editor-submit">
 						<div class="submit-button" @click="dialog_show=true">提交</div>
@@ -75,7 +82,10 @@
 					<span>确定要提交吗？</span>
 				</div>
 				<div class="dialog-box-button-box">
-					<div class="dialog-box-button" @click="submit_content();dialog_show=false">
+					<div 
+						class="dialog-box-button" 
+						@click="submit_content();dialog_show=false"
+					>
 						确定
 					</div>
 					<div class="dialog-box-button" @click="dialog_show=false">
@@ -89,5 +99,5 @@
 </body>
 <script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="js/release.js"></script>
+<script type="text/javascript" src="js/release.js?1258"></script>
 </html>

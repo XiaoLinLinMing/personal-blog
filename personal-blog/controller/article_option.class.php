@@ -39,7 +39,7 @@ class controller_article_option
 		$result = $this->db_obj->query("INSERT INTO T_ARTICLE_CONTENT (MALE_ID, CONTENT) VALUES (".$article_id.",'". $content."')");
 		if($result == false) send_content_text(0, "操作失败", "添加失败");
 
-		else send_content_text(1, "操作成功", "添加成功");
+		else send_content_text(1, "操作成功", $article_id);
 	}
 
 	/**
@@ -75,6 +75,7 @@ class controller_article_option
 			$result_item['read_num'] = $row['READING_VOLUME'];
 			$result_item['create_time'] = $row['CREATE_TIEM'];
 			$result_item['preview_content'] = $row['PREVIEW_CONTENT'];
+			$result_item['cover'] = $row['ID'] . '.jpg';
 			$article_list[$i] = $result_item;
 
 		}
@@ -172,6 +173,7 @@ class controller_article_option
 			$row = $result->fetch_assoc();
 			$result_item['title'] = $row['TITLE'];
 			$result_item['article_id'] = $row['ID'];
+			$result_item['cover'] = $row['ID'] . '.jpg';
 			$article_list[$i] = $result_item;
 		}
 		$result_array['article_list'] = $article_list;
@@ -198,6 +200,7 @@ class controller_article_option
 			$result_item['create_time'] = $row['CREATE_TIEM'];
 			$result_item['preview_content'] = $row['PREVIEW_CONTENT'];
 			$result_item['article_id'] = $row['ID'];
+			$result_item['cover'] = $row['ID'] . '.jpg';
 			$article_list[$i] = $result_item;
 		}
 

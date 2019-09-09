@@ -188,8 +188,12 @@
 	border: 1px solid #ccc;
 }
 
-
-
+.input-file{
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
 
 
 

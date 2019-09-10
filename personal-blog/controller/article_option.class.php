@@ -32,14 +32,19 @@ class controller_article_option
 		$content = $param_array["content"];
 		$recommend = $param_array["recommend"];
 
-		$content_preview = substr($content, 0, 75);
+
+		
 		$article_id = time();
+		$content_new = str_replace('%article_layout%', strval($article_id), $content);
+		$content_preview = substr($content_new, 0, 75);
 		$result = $this->db_obj->query("INSERT INTO T_ARTICLE (ID, TITLE, AUTHOR, READING_VOLUME, CALSSIFY, PREVIEW_CONTENT, RECOMMEND, CREATE_TIEM) VALUES (".$article_id.",'".$title."','".$author."',0, ".$classify.",'".$content_preview."',".$recommend.", NOW())");
 
-		$result = $this->db_obj->query("INSERT INTO T_ARTICLE_CONTENT (MALE_ID, CONTENT) VALUES (".$article_id.",'". $content."')");
+		$result = $this->db_obj->query("INSERT INTO T_ARTICLE_CONTENT (MALE_ID, CONTENT) VALUES (".$article_id.",'". $content_new ."')");
 		if($result == false) send_content_text(0, "操作失败", "添加失败");
 
-		else send_content_text(1, "操作成功", $article_id);
+		else 
+			send_content_text(1, "操作成功", $article_id);
+		
 	}
 
 	/**
@@ -71,7 +76,7 @@ class controller_article_option
 			$row = $result->fetch_assoc();
 			$result_item = array();
 			$result_item['article_id'] = $row['ID'];
-			//$result_item['classify_name'] = $row['classify_name'];
+			$result_item['classify_name'] = $row['CLASSIFY_NAME'];
 			$result_item['read_num'] = $row['READING_VOLUME'];
 			$result_item['create_time'] = $row['CREATE_TIEM'];
 			$result_item['preview_content'] = $row['PREVIEW_CONTENT'];
@@ -107,6 +112,7 @@ class controller_article_option
 		$result_array['author'] = $row['AUTHOR'];
 		$result_array['title'] = $row['TITLE'];
 		$result_array['create_time'] = $row['CREATE_TIEM'];
+		$result_item['classify_name'] = $row['CLASSIFY_NAME'];
 
 		send_content_json(1, "Success request", $result_array);
 
@@ -180,7 +186,8 @@ class controller_article_option
 			$row = $result->fetch_assoc();
 			$result_item['title'] = $row['TITLE'];
 			$result_item['article_id'] = $row['ID'];
-			$result_item['cover'] = '123.jpg';
+			$result_item['classify_name'] = $row['CLASSIFY_NAME'];
+			$result_item['cover'] = $row['ID'] . '.jpg';
 			$article_list[$i] = $result_item;
 		}
 		$result_array['article_list'] = $article_list;
@@ -205,6 +212,7 @@ class controller_article_option
 			$result_item = array();
 			$row = $result->fetch_assoc();
 			$result_item['read_num'] = $row['READING_VOLUME'];
+			$result_item['classify_name'] = $row['CLASSIFY_NAME'];
 			$result_item['create_time'] = $row['CREATE_TIEM'];
 			$result_item['preview_content'] = $row['PREVIEW_CONTENT'];
 			$result_item['article_id'] = $row['ID'];

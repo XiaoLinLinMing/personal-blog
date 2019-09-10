@@ -290,3 +290,15 @@ body{
 	text-align:center;
 	color:  rgb(80,80,80);
 }
+
+.navigation{
+	height: 80px;
+	line-height: 80px;
+	margin-left: 50px;
+	font-size: 18px;
+}
+
+.navigation>i{
+	color: rgb(78,177,126);
+	cursor: pointer;
+}

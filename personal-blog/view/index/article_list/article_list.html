@@ -4,12 +4,17 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/article_list.css">
 	<link rel="stylesheet" href="../font/style.css">
-	<title>林会祺的个人博客</title>
-</head>
+	<link rel="stylesheet" href="style.css">
+	<title>文章列表</title>
+</head> 
 <body style="padding: 0;margin: 0;">
 	<div class="main" id="main">
 		<div class="top-title">
 			@林会祺的个人博客
+		</div>
+		<div class="navigation">
+			<i class="icon-home" @click="window.location.href='../index.html'">首页 </i> | 
+			<i class="icon-reply" @click="javascript:history.go(-1)"> 后退</i>
 		</div>
 		<div class="article-panel">
 			<div class="article-panel-block">
@@ -19,12 +24,8 @@
 							v-for="(item, index) in article_list" 
 							v-show="article_list.length!=0"
 						>
-							<div 
-								class="recommended-reading-img" 
-								@click="article_dump($event)"
-								:data-id="item.article_id"
-							>
-								<div>类别</div>
+							<div class="recommended-reading-img">
+								<div>{{item.classify_name}}</div>
 								<img 
 									:src="item.cover" 
 									alt="网络开小差咯" 									 
@@ -40,11 +41,7 @@
 								</div>
 								<div class="recommended-reading-right-content">
 									
-									<span 
-										v-html='item.preview_content' 
-										@click="article_dump($event)" 
-										:data-id="item.article_id"
-									></span>
+									<span v-html='item.preview_content'></span>
 								</div>
 
 								<div class="recommended-reading-right-data">						
@@ -72,5 +69,5 @@
 </body>
 <script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="js/article_list.js?125689"></script>
+<script type="text/javascript" src="js/article_list.js?1256845"></script>
 </html>

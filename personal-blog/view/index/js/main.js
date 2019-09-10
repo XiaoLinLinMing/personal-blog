@@ -11,7 +11,7 @@ new Vue({
 		article_list:[],
 
 		/*顶部广告图片地址*/
-		ad_style:"background: url('img/test.jpg');	background-position: center;\
+		ad_style:"background: url('img/ad.jpg');	background-position: center;\
 	background-repeat:no-repeat;\
 		background-size: 100% 100%;",
 
@@ -91,7 +91,7 @@ new Vue({
 						updates_cover = 'http://www.linhuiqi.top/dashboard/个人博客/view/article_cover/'+data_obj.return_content.article_list[i].cover;
 						style = (style_str_left + updates_cover + style_str_right);
 						
-						data_obj.return_content.article_list[i].cover = style;						
+						data_obj.return_content.article_list[i].cover = style;				
 						that.$set(that.recent_updates, i,  data_obj.return_content.article_list[i]);
 						
 

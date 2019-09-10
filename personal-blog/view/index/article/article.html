@@ -4,12 +4,17 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/article.css">
 	<link rel="stylesheet" href="../font/style.css">
-	<title>Document</title>
+	<link rel="stylesheet" href="style1.css">
+	<title>文章详情</title>
 </head>
 <body style="padding: 0;margin: 0;">
 	<div class="main" id="main">
 		<div class="top-title">
 				@林会祺的个人博客
+		</div>
+		<div class="navigation">
+			<i class="icon-home" @click="window.location.href='../index.html'">首页 </i> | 
+			<i class="icon-reply" @click="javascript:history.go(-1)"> 后退</i>
 		</div>
 		<div class="panel">
 
@@ -106,11 +111,11 @@
 				<div class="contact">
 					<div class="contact_2dcode">
 						<div class="contact_2dcode-item" style="margin-right: 40px;">
-							<img src="../img/wechat.png" alt="网络开小差咯" style="width: 100%;height: 100%;border: 0;">
+							<img src="../img/toutiao.jpg" alt="网络开小差咯" style="width: 100%;height: 100%;border: 0;">
 							<div class="code-name">头条主页</div>
 						</div>
 						<div class="contact_2dcode-item">
-							<img src="../img/wechat.png" alt="网络开小差咯" style="width: 100%;height: 100%;border: 0;">
+							<img src="../img/baijia.jpg" alt="网络开小差咯" style="width: 100%;height: 100%;border: 0;">
 							<div class="code-name">百家号主页</div>
 						</div>
 					</div>

@@ -41,7 +41,6 @@
 
 .recommended-reading-block{
 	width: 100%;
-	height: 220px;
 	margin-bottom: 20px;
 	background-color: white;
 	display: flex;
@@ -84,7 +83,6 @@
 
 .recommended-reading-right{
 	width: 63%;
-	height: 180px;
 	margin-top: 20px;
 	margin-left: 20px;
 	display: flex;
@@ -93,7 +91,6 @@
 
 .recommended-reading-right-title{
 	width: 100%;
-	margin-bottom: 30px;
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 30px;
@@ -123,7 +120,6 @@
 
 .recommended-reading-right-content{
 	width: 100%;
-	height: 120px;
 	font-size: 15px;
 	color: rgb(118,118,118);
 	line-height: 25px;
@@ -187,4 +183,16 @@
 	line-height: 30px;
 	margin-right: 20px;
 	margin-top: 5px;
+}
+
+.navigation{
+	height: 80px;
+	line-height: 80px;
+	margin-left: 50px;
+	font-size: 18px;
+}
+
+.navigation>i{
+	color: rgb(78,177,126);
+	cursor: pointer;
 }

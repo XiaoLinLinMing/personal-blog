@@ -53,10 +53,9 @@ new Vue({
 				data: 'data='+JSON.stringify(article_content),
 				success:function(result){
 
-					
-					
+					console.log(result);				
 					var result_obj = $.parseJSON(result);
-					console.log(result_obj.return_content);
+					//console.log(result_obj.return_content);
 					//文件内容上传成功后 上传封面
 					var formData = new FormData();
 					formData.append("file",$("#cover")[0].files[0]);

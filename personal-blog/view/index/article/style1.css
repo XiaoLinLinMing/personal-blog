@@ -27,7 +27,11 @@
 
 .icon-home:before {
   content: "\e900";
+  color: rgb(78,177,126);
+  cursor: pointer;
 }
 .icon-reply:before {
   content: "\e96a";
+  color: rgb(78,177,126);
+  cursor: pointer;
 }

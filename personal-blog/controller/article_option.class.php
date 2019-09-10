@@ -146,8 +146,10 @@ class controller_article_option
 		$article_content = $param_array["article_content"];
 
 		$preview_content = substr($article_content, 0, 75);
+
 		//更新预览内容
 		$this->db_obj->query("UPDATE T_ARTICLE SET PREVIEW_CONTENT='".$preview_content."' WHERE ID=".$article_id);
+
 		//更新文章内容
 		$this->db_obj->query("UPDATE T_ARTICLE_CONTENT SET CONTENT='".$article_content."' WHERE MALE_ID=".$article_id);
 	}
@@ -282,12 +284,13 @@ class controller_article_option
 	 */
 	public function add_commend($param_array){
 
-		$com_id = $param_array["article_id"];
+		$article_id = $param_array["article_id"];
+		$com_id = time();
 		$commend_content = $param_array["commend_content"];
 		$commend_author = $param_array["commend_author"];
 
-		$result = $this->db_obj->query("INSERT INTO T_COMMENT (ARTICLE_ID, COM_COMTENT, COMMENTATOR_NAME,COM_TIME) VALUES (".$article_id.", '".$commend_content."', '".$commend_author."', NOW())");
-		if($result===false) send_content_text(0,"Query failure", "Query failure");
+		$result = $this->db_obj->query("INSERT INTO T_COMMENT (ARTICLE_ID, COM_CONTENT, COMMENTATOR_NAME,COM_TIME) VALUES (".$article_id.", '".$commend_content."', '".$commend_author."', NOW())");
+		if($result===false) send_content_text(0,"Query failure", "INSERT INTO T_COMMENT (ARTICLE_ID, COM_COMTENT, COMMENTATOR_NAME,COM_TIME) VALUES (".$article_id.", '".$commend_content."', '".$commend_author."', NOW())");
 		else send_content_text(1, 'Query success', 'Query success');
 	}
 

@@ -7,6 +7,10 @@ new Vue({
 		read_num:0,
 		content:'',
 		title:'',
+		commend_content:"",
+		comment_num:200,/*最多评论字数*/
+		length:0,
+		comment_array:[],
 		content_test:"<h4>阅读本文大概需要 4 分钟。<br></h4><h4>作者：\
 					 黄小斜<br><br></h4>大家都知道互联网大公司一向以技\
 					 术强悍而知名，BAT的技术在国内互联网公司里算是比较领\
@@ -27,11 +31,27 @@ new Vue({
 
 	/*页面初始化*/
 	mounted:function(){
+
+		var that = this;
 		var url=window.location.search;
 		if(url.indexOf("?")!=-1) result = url.substr(url.indexOf("=")+1);
 		this.article_id = result;
 		console.log(this.article_id);
 		this.load_article(this.article_id);
+		$('#comment_content').bind('input propertychange', function(){  
+
+			  //if(that.length == 0) --that.comment_num;
+
+			  var length = $(this).val().length;
+			  if(length > that.length) --that.comment_num;
+			  if(length < that.length) ++that.comment_num;
+			  that.length = length;
+			  console.log(that.comment_num);
+
+			  that.commend_content = $(this).val();
+		}); 
+		this.$options.methods.load_commend(this);
+
 	},
 	
 	methods:{
@@ -59,12 +79,51 @@ new Vue({
 					url = '../../../index.php?c=controller_article_option&m=reading_article&\
 					p={"article_id":'+article_id+'}';
 					$.get(url, function(data, status){
-						console.log(data);
+						
 					});
 				}
 				else console.log(statsu);//打印错误信息
 			});
 
+		},
+
+		submit_comment:function(){
+
+			var that = this;
+			var url = '../../../index.php?c=controller_article_option&m=add_commend&p={"article_id":"'+this.article_id+'","commend_content":"'+this.commend_content+'","commend_author":"游客"}';
+
+			$.get(url, function(data,status){
+
+				//若请求成功
+				if (status==='success') {
+
+					//var return_obj = $.parseJSON(data);
+					console.log(data);
+					that.$options.methods.load_commend(that);
+					that.comment_array = [];
+					alert('评论成功！');
+				}
+				else console.log(statsu);//打印错误信息
+			});
+		},
+
+		load_commend:function(that){
+
+			//加载评论
+			var url = '../../../index.php?c=controller_article_option&m=get_comment&p={"article_id":"'+that.article_id+'","start_index":"0","get_number":"50"}';
+			console.log(url);
+			$.get(url, function(data,status){
+
+				//若请求成功
+				if (status==='success') {
+					var return_obj = $.parseJSON(data);
+					for (var i = 0; i < return_obj.return_content.result_num; i++) {
+						that.$set(that.comment_array, i, return_obj.return_content.article_list[i]);
+					}
+				}
+				else console.log(statsu);//打印错误信息
+			});
 		}
+
 	}
 })

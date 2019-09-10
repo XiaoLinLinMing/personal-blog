@@ -12,10 +12,14 @@
 		<div class="top-title">
 			@林会祺的个人博客
 		</div>
+
 		<div class="navigation">
 			<i class="icon-home" @click="window.location.href='../index.html'">首页 </i> | 
 			<i class="icon-reply" @click="javascript:history.go(-1)"> 后退</i>
 		</div>
+
+		<div class="article_list_null" v-if="article_list.length == 0"><span>○( ＾皿＾)っHiahiahia…等待up更新哦~</span></div>
+
 		<div class="article-panel">
 			<div class="article-panel-block">
 				<div class="article-panel-block-item" >

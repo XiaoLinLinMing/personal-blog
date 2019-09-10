@@ -13,9 +13,10 @@
 				@林会祺的个人博客
 		</div>
 		<div class="navigation">
-			<i class="icon-home" @click="window.location.href='../index.html'">首页 </i> | 
-			<i class="icon-reply" @click="javascript:history.go(-1)"> 后退</i>
+			<i class="icon-home" @click="window.location.href='../index.html'">首页</i> | 
+			<i class="icon-reply" @click="javascript:history.go(-1)">后退</i>
 		</div>
+
 		<div class="panel">
 
 			<!--文章内容-->
@@ -38,32 +39,35 @@
 					<div class="article-comment">
 						<div class="comment-input-panel">
 							<textarea 
-								name="comment_content" 
 								id="comment_content" 
 								class="comment-input" 
 								placeholder="想说点什么吗？"
 							></textarea>
 						</div>
 						<div class="comment-submit">
-							<div class="comment-submit-item">
+							<div 
+								class="comment-submit-item" 
+								@click='submit_comment()'
+
+							>
 								发表评论
 							</div>
 							<div class="comment-word-number">
-								还能输入1000个字符
+								还能输入{{comment_num}}个字符
 							</div>
 						</div>
 					</div>
 					<div class="user-comment">
-						<div class="user-comment-block" v-for="(item, index) in [1,2,3]">
+						<div class="user-comment-block" v-for="(item, index) in comment_array">
 							<div class="user-comment-text">
 								<div class="user-comment-text-username">
-									1004513485 ：
+									{{item.commentator_name}}：
 								</div>
 								<div class="user-comment-text-username" style="color: black;">
-									我也不知道哪里拿积分，回一个试试，听说有1分拿呢
+									{{item.content}}
 								</div>
 								<div class="user-comment-text-username">
-									（2019年8月28日00:34:16）
+									{{item.create_time}}
 								</div>
 							</div>
 						</div>

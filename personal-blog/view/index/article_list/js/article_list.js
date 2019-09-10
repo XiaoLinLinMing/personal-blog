@@ -17,30 +17,15 @@ new Vue({
 
 
 		/*文章列表 预览 正式上线清空*/
-		article_list:[
-			{
-				article_id:'1',
-				cover:'img/test.jpg',
-				classify:'Python\\趣味编程',
-				read_num:183,
-				title:'我破解了邻居家的wifi密码：只需要一台笔记本电脑',
-				preview_content:'大家好，我是高手杰瑞。\
-				今天闲着无聊做了一个小程序，现在就给大家\
-				分享一下制作过程，该程序可以使用你预先设\
-				置好的密码字典去破解wifi密码，实现方法很\
-				简单，就是用穷举法去尝试字典里面的每一个\
-				密码，直至找到正确密码为止。我破解了邻居家\
-				的wifi密码：只需要一台笔记本电脑的每一个的\
-				每一个的每一个的每一个的每一个的\
-				一个的每一个'
-			}],
+		article_list:[],
 	},
 	/*页面初始化*/
 	mounted:function(){
 
 			var url=window.location.search;
 			if(url.indexOf("?")!=-1) result = url.substr(url.indexOf("=")+1);			
-			this.classify = result;
+			this.article_classify = result;
+			this.page_change(this);
 	},
 	methods:{
 
@@ -118,29 +103,34 @@ new Vue({
 		 */
 		page_change:function(that){
 
-				
 				/*请求地址 以及参数*/
-				var request_url = '../../../../index.php?c=controller_article_option&m=get_article&p=\
+				var request_url = '../../../index.php?c=controller_article_option&m=get_article&p=\
 				{"get_number":'+that.article_num+',"get_classify":'+that.article_classify+',"start_index":'+that.start_index+'}';
-
-				console.log(request_url);
+				var updates_cover;
 				$.get(request_url,function(data,status){
 
 					if (status==='success') {
 
-						this.article_list=[];
+						that.article_list=[];
+						console.log(data);
 						var data_obj = $.parseJSON(data);
-						console.log(data_obj);
-						for (var i = 0; i < data_obj.result_num; i++) {
+						//console.log(data_obj);
+						for (var i = 0; i < data_obj.return_content.result_num; i++) {
 
 							/*时间戳转正常时间*/						
-							var time = data_obj.article_list[i].create_time;
-							this.$options.methods.timestampToTime(time);
-							data_obj.article_list[i].create_time = time;
-
-							this.article_list.push(data_obj.article_list[i]);
+							var time = data_obj.return_content.article_list[i].create_time;
+							that.$options.methods.timestampToTime(time);
+							data_obj.return_content.article_list[i].create_time = time;
+							updates_cover = 'http://www.linhuiqi.top/dashboard/个人博客/view/article_cover/'+data_obj.return_content.article_list[i].cover;
+							data_obj.return_content.article_list[i].cover = updates_cover;	
+							that.$set(that.article_list, i,  data_obj.return_content.article_list[i]);
+							console.log(that.article_list);
 						}
 
+						if ((parseInt(data_obj.return_content.article_count)%that.article_num) == 0)
+							that.max_page_num = parseInt(data_obj.return_content.article_count) / that.article_num;
+						else 
+							that.max_page_num = parseInt(parseInt(data_obj.return_content.article_count) / that.article_num) + 1;
 					}
 
 					else console.log(status);

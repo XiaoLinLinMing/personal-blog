@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ch">
+<html lang="zh">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Python,c/c++,java,php,tensorflow,深度学习,个人博客">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="font/style.css">
@@ -56,24 +56,35 @@
 						@mouseover="on_updates_animation(1)"
 						@mouseout="out_updates_animation(1)"
 						:data-id = "recent_updates[0].article_id"
-						style="background:url('www.linhuiqi.top/dashboard/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/view/article_cover/1567937565.jpg')" 
-						@click="article_dump(recent_updates[0].article_id)"
+						:style="recent_updates[0].cover" 
+						@click="article_dump($event)"
+						:data-id = "recent_updates[0].article_id"
 					>
 
-						<div class="updates-detail">
+						<div 
+							class="updates-detail"
+							@click="article_dump($event)"
+							:data-id = "recent_updates[0].article_id"
+						>
 							{{recent_updates[0].title}}
 						</div>
 					</div>
 					<div 
+						v-if="recent_updates.length>=2"
 						class="updates-content-block" 
 						v-bind:class="{'updates-animation': scale_2}"
 						@mouseover="on_updates_animation(2)"
 						@mouseout="out_updates_animation(2)"
 						:data-id = "recent_updates[1].article_id"
 						:style="recent_updates[1].cover" 
-						@click="article_dump(recent_updates[0].article_id)"
+						@click="article_dump($event)"
+						:data-id = "recent_updates[1].article_id"
 					>
-						<div class="updates-detail">
+						<div 
+							class="updates-detail"
+							@click="article_dump($event)"
+							:data-id = "recent_updates[1].article_id"
+						>
 							{{recent_updates[1].title}}
 						</div>
 					</div>
@@ -120,10 +131,7 @@
 						>
 							
 							<span 
-								v-html='item.preview_content'
-								@click="article_dump($event)"
-								:data-id = "item.article_id"
-								
+								v-html='item.preview_content'							
 							></span>
 						</div>
 						<div class="recommended-reading-right-data">						
@@ -227,6 +235,6 @@
 
 <script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="js/main.js?196"></script>
+<script type="text/javascript" src="js/main.js?987"></script>
 <script type="text/javascript" src="js/play.js"></script>
 </html>

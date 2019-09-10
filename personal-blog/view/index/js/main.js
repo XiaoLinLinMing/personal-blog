@@ -60,7 +60,6 @@ new Vue({
 		 * 
 		 */
 		article_dump:function(e){
-			//console.log(e.target.dataset.id);
 			window.location.href=("article/article.html?article_id="+e.target.dataset.id);
 		},
 
@@ -78,24 +77,23 @@ new Vue({
 			var request_url = '../../index.php?c=controller_article_option&m=get_recent_updates&p={"get_number":2}';
 
 			var that = this;
-			console.log('ok');
 			/*近期更新文章获取*/
 			$.get(request_url,function(data,status){
 
 				var updates_cover, style ,style_str_left = "background:url('";
-				var style_str_right = "');background-position: center;\
-										background-repeat:no-repeat;back\
-										ground-size: 100% 100%;";
+				var style_str_right = "');background-position: center;background-repeat:no-repeat;background-size: 100% 100%;";
 
 				if (status==='success') {
+
 					var data_obj = $.parseJSON(data);
-					
 					for (var i = 0; i <  data_obj.return_content.result_num; i++) {
 
-						updates_cover = 'www.linhuiqi.top/dashboard/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/view/article_cover/'+data_obj.return_content.article_list[i].cover;
-						style = style_str_left + updates_cover + style_str_right;
-						data_obj.return_content.article_list[i].cover = style;				
+						updates_cover = 'http://www.linhuiqi.top/dashboard/个人博客/view/article_cover/'+data_obj.return_content.article_list[i].cover;
+						style = (style_str_left + updates_cover + style_str_right);
+						
+						data_obj.return_content.article_list[i].cover = style;						
 						that.$set(that.recent_updates, i,  data_obj.return_content.article_list[i]);
+						
 
 					}
 					console.log(that.recent_updates);
@@ -120,14 +118,12 @@ new Vue({
 							that.$options.methods.timestampToTime(time);
 							data_obj.return_content.article_list[i].create_time = time;
 
-							cover_url = 'http://www.linhuiqi.top/dashboard/\
-										 个人博客\
-										/view/article_cover/'+data_obj.return_content.article_list[i].cover;
+							cover_url = 'http://www.linhuiqi.top/dashboard/个人博客/view/article_cover/'+data_obj.return_content.article_list[i].cover;
 
 							data_obj.return_content.article_list[i].cover = cover_url;
-							that.$set(that.article_list, i, data_obj.return_content.article_list[i])
+							that.$set(that.article_list, i, data_obj.return_content.article_list[i]);
 						}
-						console.log(that.article_list);
+
 					}
 
 					else console.log(status);

@@ -19,7 +19,7 @@ new Vue({
 			this.content='';
 			this.content = $("#editor").text();
 			var re = /\s/g;
-			this.content = this.content.replace(re,'&nbsp;');		
+			//this.content = this.content.replace(re,'&nbsp;');		
 			this.author = $("#author").text();
 			
 			//检查内容似乎否完整

@@ -40,7 +40,6 @@ new Vue({
 		load_article:function(article_id){
 
 			var that = this;
-			console.log('ok');
 			//请求地址拼接
 			var url = '../../../index.php?c=controller_article_option&m=get_article_content&\
 			p={"article_id":'+article_id+'}';
@@ -50,13 +49,18 @@ new Vue({
 				//若请求成功
 				if (status==='success') {
 
-					console.log(data);
 					var return_obj = $.parseJSON(data);
 					that.content = return_obj.return_content.content;
 					that.author = return_obj.return_content.author;
 					that.title = return_obj.return_content.title;
 					that.create_time = return_obj.return_content.create_time;
-					console.log(that.content);
+					that.read_num = parseInt(return_obj.return_content.read_num);
+					//console.log(that.content);
+					url = '../../../index.php?c=controller_article_option&m=reading_article&\
+					p={"article_id":'+article_id+'}';
+					$.get(url, function(data, status){
+						console.log(data);
+					});
 				}
 				else console.log(statsu);//打印错误信息
 			});

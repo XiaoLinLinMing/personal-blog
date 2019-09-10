@@ -75,11 +75,16 @@ class controller_article_option
 			$result_item['read_num'] = $row['READING_VOLUME'];
 			$result_item['create_time'] = $row['CREATE_TIEM'];
 			$result_item['preview_content'] = $row['PREVIEW_CONTENT'];
+			$result_item['title'] = $row['TITLE'];
 			$result_item['cover'] = $row['ID'] . '.jpg';
 			$article_list[$i] = $result_item;
 
 		}
+
+		$result = $this->db_obj->query("SELECT COUNT(CALSSIFY=".$get_classify." or null) FROM T_ARTICLE");
+		$row = $result->fetch_assoc();
 		$result_array['article_list'] = $article_list;
+		$result_array['article_count'] = $row['COUNT(CALSSIFY='.$get_classify.' or null)'];
 		send_content_json(1, 'Success request' , $result_array);
 	}
 
@@ -116,9 +121,11 @@ class controller_article_option
 
 		$article_id = $param_array["article_id"];
 
-		$result = $this->db_obj->query("SELECT READING_VOLUME FROM T_ARTICLE_CONTENT WHERE ID=".$article_id);
-		++$result->fetch_assoc()['READING_VOLUME'];
-		$this->db_obj->query("UPDATE T_ARTICLE SET READING_VOLUME=".$result->fetch_assoc()['READING_VOLUME']);
+		$result = $this->db_obj->query("SELECT READING_VOLUME FROM T_ARTICLE WHERE ID=".$article_id);
+		$row = $result->fetch_assoc();
+		$read_num = intval($row['READING_VOLUME'])+1;
+		$this->db_obj->query("UPDATE T_ARTICLE SET READING_VOLUME=".strval($read_num)." WHERE ID=".$article_id);
+		send_content_text(0,'1',"UPDATE T_ARTICLE SET READING_VOLUME=".strval($read_num)." WHERE ID=".$article_id);
 	}
 
 	/**
@@ -173,11 +180,12 @@ class controller_article_option
 			$row = $result->fetch_assoc();
 			$result_item['title'] = $row['TITLE'];
 			$result_item['article_id'] = $row['ID'];
-			$result_item['cover'] = $row['ID'] . '.jpg';
+			$result_item['cover'] = '123.jpg';
 			$article_list[$i] = $result_item;
 		}
 		$result_array['article_list'] = $article_list;
 		send_content_json(1,"Success request", $result_array);
+
 	}
 
 	/**
@@ -201,6 +209,7 @@ class controller_article_option
 			$result_item['preview_content'] = $row['PREVIEW_CONTENT'];
 			$result_item['article_id'] = $row['ID'];
 			$result_item['cover'] = $row['ID'] . '.jpg';
+			$result_item['title'] = $row['TITLE'];
 			$article_list[$i] = $result_item;
 		}
 

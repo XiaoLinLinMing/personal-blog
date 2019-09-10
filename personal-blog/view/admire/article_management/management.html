@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/management.css">
+	<title>文章管理</title>
+</head>
+<body style="padding: 0;margin: 0;">
+	<div id="main">
+		<div class="align-center">
+			<div class="navigation-bar">
+				<div 
+					class="navigation-bar-item" 
+					:class="{'checked':class_1}" 
+					:data-id='1'
+					@click="navigation_checked($event)"
+				>
+					机器学习理论\框架
+				</div>
+				<div 
+					class="navigation-bar-item" 
+					:class="{'checked':class_2}" 
+					:data-id='2'
+					@click="navigation_checked($event)"
+				>
+					前端\Vue.js\微信小程序
+				</div>
+				<div 
+					class="navigation-bar-item" 
+					:class="{'checked':class_3}" 
+					:data-id='3'
+					@click="navigation_checked($event)"
+				>
+					后端\Mysql\PHP
+				</div>
+				<div 
+					class="navigation-bar-item" 
+					:class="{'checked':class_4}" 
+					:data-id='4'
+					@click="navigation_checked($event)"
+				>
+					C\C++\python\java
+				</div>
+				<div 
+					class="navigation-bar-item" 
+					:class="{'checked':class_5}" 
+					:data-id='5'
+					@click="navigation_checked($event)"
+				>
+					错误笔记
+				</div>
+
+			</div>
+		</div>
+
+		<div class="align-center" v-for='(item, index) in article_list'>
+			<div v-if="article_list[index].show">
+				<div class="article-list">
+					<div class="article-list-item">
+						<div class="article-cover">
+							<img :src="item.cover" alt="">
+						</div>
+						<div class="article-right">
+							<div class="article-title">
+								{{item.title}}
+							</div>
+							<div class="article-data">
+								<span>阅读：{{item.read_num}}&#8194;</span>|<span>&#8194;发布日期:{{item.create_time}}</span>
+							</div>
+							<div class="article-editor">
+								<span :data-id='item.article_id'>编辑&#8194;</span>|
+								<span 
+									:data-id='item.article_id' 
+									:data-index='index' 
+									@click='del_article($event)'
+								>&#8194;删除</span>|
+								<span :data-id='item.article_id'>&#8194;查看评论</span>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/management.js?2"></script>
+</html>

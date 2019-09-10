@@ -16,7 +16,7 @@ new Vue({
 						$("#title").text('发布文章');
 						break;
 				case 2:
-						$("#show").attr("src","manage_article/manage_articl.html");
+						$("#show").attr("src","article_management/management.html");
 						$("#title").text('文章管理');
 						break;
 				case 3:
